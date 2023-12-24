@@ -1,3 +1,8 @@
+> ⚠️ **Work in Progress & Frequent Crashes**  
+> 
+> **Attention:** This physics simulation project is a work in progress and may encounter frequent crashes or unexpected behavior. Please exercise caution while running the simulation as it's currently unstable. Your patience and feedback are greatly appreciated as we continue to improve its stability and performance.
+
+
 # Physics Simulation
 
 This is a simple physics simulation program that demonstrates bouncing balls within a tkinter-based graphical user interface.
