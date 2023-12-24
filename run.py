@@ -52,11 +52,10 @@ class Ball:
             new_ball.vy = random.uniform(1, 5)
             balls.append(new_ball)
             ball_count += 1  # Increment ball count
-            print(f"Collision occurred! Ball count: {ball_count}")  # Print ball count when collision occurs
+            ball_count_label.config(text=f"Ball count: {ball_count}")  # Update label text with ball count
             self.has_collided = True
             self.collision_cooldown = True
             self.canvas.after(5000, self.reset_cooldown)  # Cooldown for 5 seconds
-
 
     def reset_cooldown(self):
         self.collision_cooldown = False
@@ -95,16 +94,58 @@ def create_initial_balls(num_balls):
 
 root = tk.Tk()
 root.title("Physics Simulation")
+
+# Create Canvas
 canvas = tk.Canvas(root, width=600, height=600, bg="black")
 canvas.pack()
 
+# Create balls list
 balls = []
+
+# Create label for ball count
+ball_count_label = tk.Label(root, text=f"Ball count: {ball_count}")
+ball_count_label.pack()
 
 gravity = 1  # Define gravity here
 
 # Set the initial number of balls
-initial_ball_count = 5
+initial_ball_count = 2
+
+# Function to create initial balls
+def create_initial_balls(num_balls):
+    for _ in range(num_balls):
+        color = random.choice(["red", "blue", "green"])
+        x = random.uniform(0, 600)
+        y = random.uniform(0, 100)
+        radius = random.uniform(5, 15)
+        ball = Ball(canvas, x, y, radius, color)
+        ball.vx = random.uniform(-5, 5)
+        ball.vy = random.uniform(-5, 5)
+        balls.append(ball)
+
+# Function to adjust gravity
+def adjust_gravity():
+    global gravity
+    for ball in balls:
+        ball.vy += gravity
+
+# Function to animate balls
+def animate():
+    for ball in balls:
+        ball.move()
+        for other_ball in balls:
+            if ball != other_ball and ball.check_collision(other_ball):
+                ball.handle_collision(other_ball)
+            else:
+                ball.has_collided = False  # Reset has_collided attribute
+    root.after(20, animate)
+    adjust_gravity()
+
+# Create initial balls
 create_initial_balls(initial_ball_count)
 
+# Start animation
 animate()
+
+# Run tkinter main loop
 root.mainloop()
