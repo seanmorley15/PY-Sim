@@ -1,0 +1,12 @@
+# requirements.txt
+
+# Versions might differ based on your specific environment or needs
+
+# Tkinter library (for GUI)
+tkinter
+
+# Math functions
+math
+
+# Random number generation
+random
