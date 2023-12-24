@@ -19,7 +19,7 @@ The simulation generates multiple balls that bounce around the canvas area. The 
     ```
 3. Run the simulation using Python:
     ```bash
-    python physics_simulation.py
+    python sim.py
     ```
 
 ## Usage
