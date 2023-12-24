@@ -141,6 +141,7 @@ def animate():
     root.after(20, animate)
     adjust_gravity()
 
+
 # Create initial balls
 create_initial_balls(initial_ball_count)
 
