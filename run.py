@@ -2,6 +2,8 @@ import tkinter as tk
 import math
 import random
 
+ball_count = 0  # Global variable to keep track of ball count
+
 class Ball:
     def __init__(self, canvas, x, y, radius, color):
         self.canvas = canvas
@@ -34,6 +36,7 @@ class Ball:
         return distance <= self.radius + other_ball.radius
 
     def handle_collision(self, other_ball):
+        global ball_count
         if not self.has_collided and not self.collision_cooldown:
             angle = math.atan2(other_ball.y - self.y, other_ball.x - self.x)
             angle_rad = math.radians(angle)
@@ -48,9 +51,12 @@ class Ball:
             new_ball.vx = random.uniform(-5, 5)
             new_ball.vy = random.uniform(1, 5)
             balls.append(new_ball)
+            ball_count += 1  # Increment ball count
+            print(f"Collision occurred! Ball count: {ball_count}")  # Print ball count when collision occurs
             self.has_collided = True
             self.collision_cooldown = True
             self.canvas.after(5000, self.reset_cooldown)  # Cooldown for 5 seconds
+
 
     def reset_cooldown(self):
         self.collision_cooldown = False
@@ -97,7 +103,7 @@ balls = []
 gravity = 1  # Define gravity here
 
 # Set the initial number of balls
-initial_ball_count = 2
+initial_ball_count = 5
 create_initial_balls(initial_ball_count)
 
 animate()
