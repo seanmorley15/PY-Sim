@@ -27,13 +27,13 @@ class Ball:
         canvas_width = self.canvas.winfo_width()
         canvas_height = self.canvas.winfo_height()
         if self.x - self.radius <= 0:
-            self.vx = abs(self.vx)
+            self.vx = abs(self.vx) # Positive sign regardless of input
         if self.x + self.radius >= canvas_width:
-            self.vx = abs(self.vx) * -1
+            self.vx = abs(self.vx) * -1 # Negative sign regardless of input
         if self.y - self.radius <= 0:
-            self.vy = abs(self.vy)
+            self.vy = abs(self.vy) # Positive sign -||-
         if self.y + self.radius >= canvas_height:
-            self.vy = abs(self.vy) * -1
+            self.vy = abs(self.vy) * -1 # Negative sign -||-
 
     def check_collision(self, other_ball):
         distance = ((self.x - other_ball.x) ** 2 + (self.y - other_ball.y) ** 2) ** 0.5
